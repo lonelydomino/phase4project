@@ -1,19 +1,26 @@
-const header1 = () => document.getElementById("header1")
-const startButton = () => document.getElementById("start-button")
-const canvas = () => document.getElementById("canvas")
-const context = () => canvas.getContext('2d');
+
 // const heroCollection = () => document.getElementById("hero-collection")
-const cell = 100;
-const gameBoard = [];
+
 document.addEventListener("DOMContentLoaded", () => {
     startButton().addEventListener("click", handleShowBoard)
 })
 
+const createBoard = () => {
+    for(let y = square; y < canvas.height; y += square){
+      for(let x = 0; x < canvas.width; x += square){
+        gameBoard.push(new Cell(x, y));
+      }
+    }
+    for (let i = 0; i < gameBoard.length; i++){
+        gameBoard[i].createSquare()
+    }
+}
+
 const handleShowBoard = () => {
     canvas.width = 1000;
     canvas.height = 600;
-}
-
+    createBoard()
+}   
 // const handleShowHerosClick = () => {
 //     fetch('http://localhost:3000/heros')
 //     .then(response => response.json())
